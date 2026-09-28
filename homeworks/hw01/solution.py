@@ -34,7 +34,7 @@ def main():
     info_layers = DatasetInfo("Таблица Layers", layers_raw)
     info_pumping = DatasetInfo("Таблица Pumping Test", pumping_raw)
     
-    print("\n Раздел 12: Вывод метода describe() ")
+    print("\n Вывод метода describe() ")
     print(info_wells.describe())
     print(info_layers.describe())
     print(info_pumping.describe())
@@ -54,7 +54,7 @@ def main():
     restored = flat.reshape(pressure_cube.shape)
     assert np.allclose(restored, pressure_cube)
     
-    print("\n--- Раздел 13: Экспорт результатов и верификация ---")
+    print("\n Экспорт результатов и верификация ")
     
     wells_clean.to_csv(processed_dir / "wells_clean.csv", index=False)
     
@@ -75,7 +75,7 @@ def main():
    
     txt_path = exports_dir / "results.txt"
     with open(txt_path, "w", encoding="utf-8") as f:
-        f.write("=== ОТЧЕТ ПО ОБРАБОТКЕ ДАННЫХ ===\n\n")
+        f.write("ОТЧЕТ ПО ОБРАБОТКЕ ДАННЫХ \n\n")
         f.write(f"Форма двумерного массива (pressure_matrix): {pressure_matrix.shape}\n")
         f.write(f"Форма трёхмерного массива (pressure_cube): {pressure_cube.shape}\n\n")
         f.write("Сводная статистика по ключевым параметрам:\n")
@@ -91,13 +91,13 @@ def main():
     assert np.allclose(matrix_loaded, pressure_matrix), "Ошибка: Восстановленная матрица 2D повреждена!"
     assert np.allclose(cube_loaded, pressure_cube), "Ошибка: Восстановленный куб 3D поврежден!"
     
-    print(f"[УСПЕХ] Все 5 выходных файлов успешно сгенерированы:")
+    print(f" Все 5 выходных файлов успешно сгенерированы:")
     print(f"  1. {processed_dir / 'wells_clean.csv'}")
     print(f"  2. {processed_dir / 'table_summary.xlsx'}")
     print(f"  3. {processed_dir / 'pressure_matrix.npy'}")
     print(f"  4. {processed_dir / 'pressure_cube.npz'}")
     print(f"  5. {txt_path}")
-    print("[УСПЕХ] Обратная проверка через np.allclose подтвердила полную идентичность данных!")
+    print(" Обратная проверка через np.allclose подтвердила полную идентичность данных!")
 
 if __name__ == "__main__":
     main()

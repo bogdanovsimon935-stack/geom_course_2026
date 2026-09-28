@@ -94,12 +94,20 @@ def calculate_statistics_and_slices(wells_clean, layers):
     print(f"2. Первые три: {pressure[:3]}")
     print(f"3. Каждое второе: {pressure[::2]}")
     
+    
     mask_pressure = pressure < pressure.mean()
-    print(f"4. Давление ниже среднего: {len(pressure[mask_pressure])}")
+    under_average_pressure = pressure[mask_pressure]
+    print(f"4. Давление ниже среднего (всего {len(under_average_pressure)}):")
+    print(under_average_pressure)
+    
     
     mask_distance = wells_clean["radius_m"] > 100
-    print(f"5. Скважины дальше 100 м: {len(wells_clean[mask_distance])}")
+    far_wells = wells_clean[mask_distance]
+    print(f"5. Скважины дальше 100 м (всего {len(far_wells)}):")
+    print(far_wells[["radius_m", "pressure_mpa"]])  
+    
     return wells_clean
+
 
 
 def create_numpy_arrays(pumping_test):
