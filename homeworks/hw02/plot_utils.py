@@ -76,3 +76,4 @@ def plot_pressure_by_radius(table, output_dir):
     
     
     plt.close(fig)
+ 

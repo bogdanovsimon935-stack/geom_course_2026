@@ -45,4 +45,4 @@ def main():
     print("\n Все 4 файла графиков успешно сгенерированы в figures/hw02.")
 
 if __name__ == "__main__":
-    main()
+    main() 
