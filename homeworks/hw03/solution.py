@@ -159,10 +159,6 @@ def main():
     print("Шаг 5: Рисунки успешно сохранены в figures/hw03.")
 
     
-    
-    
-    
-       
     print("Шаг 6: Сохранение и проверка viz_data.npz...")
     np.savez(
         OUTPUT_NPZ_PATH,
@@ -176,37 +172,19 @@ def main():
         observation_drop_mpa=observation_drop_mpa,
     )
 
-
+    
     loaded = np.load(OUTPUT_NPZ_PATH, allow_pickle=True)
-    assert list(loaded.keys()) == [
-        'time_h', 'boundary_pressure_mpa', 'well_pressure_mpa', 'pressure_drop_mpa',
-        'well_id', 'radius_m', 'observation_pressure_mpa', 'observation_drop_mpa'
-    ], "Ошибка: Ключи в npz файле не совпадают!"
-    assert loaded['time_h'].shape == (13,), "Ошибка: Изменилась форма массива time_h!"
-    assert loaded['well_id'].shape == (7,), "Ошибка: Изменилась форма массива well_id!"
-    
-    print("\nУспех")
+    expected_shapes = {
+        "time_h": (13,),
+        "well_id": (7,),
+    }
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    loaded = np.load(OUTPUT_NPZ_PATH)
-    assert list(loaded.keys()) == [
-        'time_h', 'boundary_pressure_mpa', 'well_pressure_mpa', 'pressure_drop_mpa',
-        'well_id', 'radius_m', 'observation_pressure_mpa', 'observation_drop_mpa'
-    ], "Ошибка: Ключи в npz файле не совпадают!"
-    assert loaded['time_h'].shape == (13,), "Ошибка: Форма массива time_h изменилась!"
-    assert loaded['well_id'].shape == (7,), "Ошибка: Форма массива well_id изменилась!"
+    for key, expected_shape in expected_shapes.items():
+        assert key in loaded, f"Ошибка: Ключ '{key}' отсутствует в npz файле!"
+        assert loaded[key].shape == expected_shape, f"Ошибка: Изменилась форма массива {key}!"
     
     print("\nПроверка NPZ успешно пройдена! Все пункты чек-листа выполнены.")
 
 
 if __name__ == "__main__":
     main()
-

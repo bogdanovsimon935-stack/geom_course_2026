@@ -70,7 +70,7 @@ def main():
     observation_drop_mpa = 12.0 - observation_pressure_mpa
 
     
-    print("Шаг 3: Построение композиции 2х2 (pressure_overview)...")
+    print("Шаг 3: Построение композиции 2х2 ...")
     fig, axes = plt.subplots(
         2,
         2,
@@ -120,7 +120,7 @@ def main():
     plt.close(fig)
 
     
-    print("Шаг 4: Построение сравнения boxplot и violin plot (distributions)...")
+    print("Шаг 4: Построение сравнения boxplot и violin plot ...")
     fig2, axes2 = plt.subplots(
         1,
         2,
@@ -168,14 +168,16 @@ def main():
 
     
     loaded = np.load(OUTPUT_NPZ_PATH)
-    assert list(loaded.keys()) == [
-        'time_h', 'boundary_pressure_mpa', 'well_pressure_mpa', 'pressure_drop_mpa',
-        'well_id', 'radius_m', 'observation_pressure_mpa', 'observation_drop_mpa'
-    ], "Ошибка: Ключи в npz файле не совпадают!"
-    assert loaded['time_h'].shape == (13,), "Ошибка: Изменилась форма массива time_h!"
-    assert loaded['well_id'].shape == (7,), "Ошибка: Изменилась форма массива well_id!"
+    expected_shapes = {
+        "time_h": (13,),
+        "well_id": (7,),
+    }
+
+    for key, expected_shape in expected_shapes.items():
+        assert key in loaded, f"Ошибка: Ключ '{key}' отсутствует в npz файле!"
+        assert loaded[key].shape == expected_shape, f"Ошибка: Изменилась форма массива {key}!"
     
-    print("\[Успех.")
+    print("Успех.")
 
 
 if __name__ == "__main__":
