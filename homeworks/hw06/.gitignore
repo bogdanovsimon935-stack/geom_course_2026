@@ -1,0 +1,8 @@
+# Recreate these files with BasinToVTK.exe. Submit PVSM, PNG and CSV instead.
+vtk/
+data/*_vtk/
+data/*_vtk_*/
+# Large optional video exports; submit a link in answers.md.
+*.mp4
+*.avi
+*.ogv

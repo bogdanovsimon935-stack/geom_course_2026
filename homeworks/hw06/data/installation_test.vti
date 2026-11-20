@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<VTKFile type="ImageData" version="0.1" byte_order="LittleEndian">
+  <ImageData WholeExtent="0 3 0 2 0 0" Origin="0 0 0" Spacing="1 1 1">
+    <Piece Extent="0 3 0 2 0 0">
+      <PointData/>
+      <CellData Scalars="temperature_C">
+        <DataArray type="Float64" Name="temperature_C" format="ascii">10 20 30 40 50 60</DataArray>
+        <DataArray type="UInt8" Name="active" format="ascii">1 1 1 1 1 0</DataArray>
+      </CellData>
+    </Piece>
+  </ImageData>
+</VTKFile>
